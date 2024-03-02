@@ -20,3 +20,7 @@
 ```
 node index.js <inputPath> [--out <outputPath>]
 ```
+![image](https://github.com/aim4ik11/SDM_Lab1/assets/135731067/054e6cd5-71cd-4197-a68a-53a87d0470e8)
+
+## Реверт-коміт
+[Посилання](https://github.com/aim4ik11/SDM_Lab1/commit/869b3cc2d2b023ddffed0079a8dbb6efde4b4c46)
