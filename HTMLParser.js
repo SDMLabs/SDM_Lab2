@@ -38,7 +38,6 @@ class HTMLParser {
         const words = markdownText.split(/\s+/);
         const markdownSymbols = ['**', '_', '`'];
         for (const word of words) {
-            console.log(word);
             for (const symbol of markdownSymbols) {
                 if ((word.startsWith(symbol) || word.endsWith(symbol)) && word !== symbol) {
                     throw new Error(`There is not finished markdown - ${word}`);
