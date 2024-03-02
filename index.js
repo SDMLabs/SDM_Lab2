@@ -1,4 +1,5 @@
 const fs = require('fs');
+const HTMLParser = require("./HTMLParser");
 
 function checkArguments(argv) {
     if (argv.length !== 3 && argv.length !== 5) {
@@ -19,6 +20,9 @@ function main() {
     const outputFile = argv[4];
 
     const markdownText = fs.readFileSync(inputFile, 'utf-8');
+
+    const htmlText = HTMLParser.markdownToHTML(markdownText);
+    console.log(htmlText);
 }
 
 main();
