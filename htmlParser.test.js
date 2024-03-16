@@ -10,7 +10,7 @@ describe('HTMLParser', () => {
 
         test('converts **bold** correctly', () => {
             markdownText = '**bold**';
-            expectedHTML = '<b>boldak krut</b>';
+            expectedHTML = '<b>bold</b>';
         });
 
         test('converts _italic_ correctly', () => {
