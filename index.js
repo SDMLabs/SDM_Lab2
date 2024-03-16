@@ -50,3 +50,5 @@ function main() {
 
 
 main();
+
+module.exports = checkArguments;
