@@ -1,12 +1,24 @@
 const fs = require('fs');
 const HTMLParser = require("./HTMLParser");
 
+const flags = {
+    OUTPUT: '--out',
+    ANSI_FORMAT: '--format=ansi',
+    HTML_FORMAT: '--format=html',
+}
+
 function checkArguments(argv) {
-    if (argv.length !== 3 && argv.length !== 5) {
+    const flag = argv[3];
+
+    if (argv.length < 3 && argv.length > 5) {
         throw new Error("Wrong format of input arguments");
     }
 
-    if (argv.length === 5 && argv[3] !== '--out') {
+    if (argv.length === 5 && flag !== flags.OUTPUT) {
+        throw new Error("Wrong format of input arguments");
+    }
+
+    if(argv.length === 4 && flag !== flags.ANSI_FORMAT && flag !== flags.HTML_FORMAT) {
         throw new Error("Wrong format of input arguments");
     }
 }
@@ -17,15 +29,14 @@ function main() {
 
         checkArguments(argv);
 
-        const inputFile = argv[2];
-        const outputFile = argv[4];
+        const [,, inputFile, flag, outputFile] = argv;
 
         const markdownText = fs.readFileSync(inputFile, 'utf-8');
 
         const htmlText = HTMLParser.markdownToHTML(markdownText);
 
         if (!outputFile) {
-            console.log(htmlText);
+            console.log(flag === flags.HTML_FORMAT ? htmlText : HTMLParser.formatTextWithANSI(htmlText));
         } else {
             fs.writeFileSync(outputFile, htmlText);
             console.log(`HTML розмітка була збережена в файлі: ${outputFile}`);
@@ -36,5 +47,6 @@ function main() {
         process.exit(1);
     }
 }
+
 
 main();

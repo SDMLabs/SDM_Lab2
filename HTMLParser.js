@@ -45,6 +45,36 @@ class HTMLParser {
             }
         }
     }
+
+    static formatTextWithANSI(text) {
+        const tagMap = {
+            '<b>': '\x1b[1m',
+            '<tt>': '\x1b[7m',
+            '<pre>': '\x1b[7m',
+            '<i>': '\x1b[3m',
+            '<p>': '\t',
+        };
+
+        const endTagMap = {
+            '</b>': '\x1b[0m',
+            '</tt>': '\x1b[0m',
+            '</pre>': '\x1b[0m',
+            '</i>': '\x1b[0m',
+            '</p>': '',
+        };
+
+        let formattedText = text;
+
+        Object.entries(tagMap).forEach(([tag, code]) => {
+            formattedText = formattedText.replace(new RegExp(tag, 'g'), code);
+        });
+
+        Object.entries(endTagMap).forEach(([tag, code]) => {
+            formattedText = formattedText.replace(new RegExp(tag, 'g'), code);
+        });
+
+        return formattedText;
+    }
 }
 
 module.exports = HTMLParser;
