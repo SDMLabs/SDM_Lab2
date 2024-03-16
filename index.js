@@ -36,7 +36,8 @@ function main() {
         const htmlText = HTMLParser.markdownToHTML(markdownText);
 
         if (!outputFile) {
-            console.log(flag === flags.HTML_FORMAT ? htmlText : HTMLParser.formatTextWithANSI(htmlText));
+            const text = HTMLParser.formatTextWithANSI(htmlText);
+            //console.log(flag === flags.HTML_FORMAT ? htmlText : HTMLParser.formatTextWithANSI(htmlText));
         } else {
             fs.writeFileSync(outputFile, htmlText);
             console.log(`HTML розмітка була збережена в файлі: ${outputFile}`);
